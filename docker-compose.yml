@@ -1,0 +1,11 @@
+services:
+    dhcp-server:
+    build: .
+    container_name: dhcp-server-docker
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+        - ./dhcpd.conf:/etc/dhcp/dhcpd.conf
+        - ./dhcpd.leases:/var/lib/dhcp/dhcp.leases
+    command: dhcpd -f -d -cf /etc/dhcp/dhcpd.conf ens3
+    
